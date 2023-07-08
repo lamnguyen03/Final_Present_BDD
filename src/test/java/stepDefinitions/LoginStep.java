@@ -1,4 +1,5 @@
 package stepDefinitions;
+import browsers.Driver;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,17 +9,8 @@ import org.openqa.selenium.WebDriver;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 
-public class LoginStep {
+public class LoginStep extends BaseStep {
     private LoginPage loginPage;
-    private HomePage homePage;
-    private WebDriver driver;
-
-    @Given("^user is on the home page$")
-    public void user_is_on_the_home_page() {
-        driver = Hooks.getDriver();
-        driver.get("https://magento.softwaretestingboard.com/");
-        homePage = new HomePage(driver);
-    }
 
     @And("^user navigates to the login page$")
     public void user_navigates_to_the_login_page() {
