@@ -42,6 +42,8 @@ public class Driver{
                     caps.setCapability("os", "Windows");
                     caps.setCapability("os_version", "10");
                     caps.setCapability("name", "Your Test Name");
+                    caps.setCapability("browserstack.user", AppConstant.USERNAME);
+                    caps.setCapability("browserstack.key", AppConstant.AUTOMATE_KEY);
 
                     driver = new RemoteWebDriver(new URL(AppConstant.urlBrowserSrack), caps);
                 } catch (MalformedURLException e) {

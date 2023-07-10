@@ -4,8 +4,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+import java.time.Duration;
+
+public class LoginPage extends BasePage{
     private WebDriver driver;
 
     @FindBy(linkText = "Sign In")
@@ -22,12 +26,14 @@ public class LoginPage {
 
     @FindBy(className = "mage-error")
     private WebElement failMessage;
+    @FindBy(xpath = "//div[@class=\'field captcha required\']")
+    private WebElement capCha;
 
     @FindBy(className = "logged-in")
     private WebElement successMessage;
 
     public LoginPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -50,10 +56,14 @@ public class LoginPage {
     }
 
     public boolean isLogInSuccess() {
+        waitToBeAvailable(successMessage);
         return successMessage.isDisplayed();
     }
 
     public boolean isLogInFail() {
         return failMessage.isDisplayed();
+    }
+    public boolean isCapcha(){
+        return capCha.isDisplayed();
     }
 }

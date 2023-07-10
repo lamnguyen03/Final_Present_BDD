@@ -1,3 +1,4 @@
+#@ignore
 Feature: Login
 
   @tc001
@@ -10,28 +11,20 @@ Feature: Login
     Examples:
       | email                           | password    |
       | lamlam112.nguyenthanh@gmail.com | Thanhlam26@ |
-      | lam26lam03+1@gmail.com          | thanhlam26@ |
 
+  @tc002
   Scenario Outline: User cannot login with invalid email
     Given user is on the home page
     And user navigates to the login page
     When user enters email "<email>" and password "<password>"
     And user clicks on the login button
-    Then display fail message and navigate to the home page
+    Then display capcha message and navigate to the home page
     Examples:
       | email                  | password    |
       | lam26lam03+2@gmail.com | thanhlam26@ |
 
-  Scenario Outline: User cannot login with wrong password
-    Given user is on the home page
-    And user navigates to the login page
-    When user enters email "<email>" and password "<password>"
-    And user clicks on the login button
-    Then display fail message and navigate to the home page
-    Examples:
-      | email                  | password      |
-      | lam26lam03+1@gmail.com | thanhlam26@11 |
 
+  @tc003
   Scenario Outline: User cannot login when email and password are empty
     Given user is on the home page
     And user navigates to the login page

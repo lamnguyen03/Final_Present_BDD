@@ -9,12 +9,13 @@ import org.openqa.selenium.WebDriver;
 import pageObjects.HomePage;
 import pageObjects.LoginPage;
 
-public class LoginStep extends BaseStep {
+public class LoginStep {
+    private BaseStep baseStep = new BaseStep();
     private LoginPage loginPage;
 
-    @And("^user navigates to the login page$")
+    @Given("^user navigates to the login page$")
     public void user_navigates_to_the_login_page() {
-        loginPage = homePage.navigateToLoginPage();
+        loginPage = baseStep.homePage.navigateToLoginPage();
     }
 
     @When("^user enters email \"(.*)\" and password \"(.*)\"$")
@@ -35,5 +36,9 @@ public class LoginStep extends BaseStep {
     @Then("^display fail message and navigate to the home page$")
     public void display_fail_message_and_navigate_to_the_home_page() {
         Assert.assertTrue("Login fail message is not displayed", loginPage.isLogInFail());
+    }
+    @Then("^display capcha message and navigate to the home page$")
+    public void display_capcha_message_and_navigate_to_the_home_page() {
+        Assert.assertTrue("Login fail message is not displayed", loginPage.isCapcha());
     }
 }

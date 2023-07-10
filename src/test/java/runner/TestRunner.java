@@ -9,8 +9,6 @@ import org.junit.runner.RunWith;
         features = "src/test/features/",
         glue = { "stepDefinitions" },
         tags = "not @ignore"
-
-
 )
 public class TestRunner {
 }
