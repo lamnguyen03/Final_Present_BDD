@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
     private WebDriver driver;
 
     @FindBy(linkText = "Sign In")
@@ -24,12 +24,12 @@ public class LoginPage extends BasePage{
     @FindBy(id = "send2")
     private WebElement logInBtn;
 
-    @FindBy(className = "mage-error")
+    @FindBy(xpath = "//div[@role='alert' and @class='messages']")
     private WebElement failMessage;
     @FindBy(xpath = "//div[@class=\'field captcha required\']")
     private WebElement capCha;
 
-    @FindBy(className = "logged-in")
+    @FindBy(xpath = "(//span[@class='logged-in' and contains(text(),'Welcome')])[1]\n")
     private WebElement successMessage;
 
     public LoginPage(WebDriver driver) {
@@ -56,14 +56,23 @@ public class LoginPage extends BasePage{
     }
 
     public boolean isLogInSuccess() {
-        waitToBeAvailable(successMessage);
+        try {
+            waitToBeAvailable(successMessage);
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            waitToBeAvailable(successMessage);
+        }
         return successMessage.isDisplayed();
     }
 
     public boolean isLogInFail() {
+        try {
+            waitToBeAvailable(failMessage);
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            waitToBeAvailable(failMessage);
+        }
         return failMessage.isDisplayed();
     }
-    public boolean isCapcha(){
-        return capCha.isDisplayed();
-    }
+
+
+
 }

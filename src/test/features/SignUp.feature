@@ -9,5 +9,5 @@ Feature: SignUp
     And the user clicks on the Create Account button
     Then user should be redirected to the account dashboard page
     Examples:
-      | firstName |  | lastName |  | email                     |  | password       |  | confirmPassword |
-      | Coj       |  | Nguyen   |  | lam.nguyennn+22@gmail.com |  | Thanhlam11@123 |  | Thanhlam11@123  |
+      | firstName |  | lastName |  | email    |  | password       |  | confirmPassword |
+      | <random>  |  | <random> |  | <random> |  | Thanhlam11@123 |  | Thanhlam11@123  |

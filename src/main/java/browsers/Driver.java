@@ -24,12 +24,11 @@ public class Driver{
         return driver;
     }
     public void initDriver() {
-        String webdriver = System.getProperty("webdriver", AppConstant.DEFAULT_BROWSER);
+        String webdriver = System.getProperty("webdriver");
+        if (webdriver == null){
+            webdriver = "";
+        }
         switch (webdriver) {
-            case "chrome":
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();

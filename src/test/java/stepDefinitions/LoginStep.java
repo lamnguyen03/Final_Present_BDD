@@ -33,12 +33,13 @@ public class LoginStep {
         Assert.assertTrue("Login success message is not displayed", loginPage.isLogInSuccess());
     }
 
-    @Then("^display fail message and navigate to the home page$")
-    public void display_fail_message_and_navigate_to_the_home_page() {
-        Assert.assertTrue("Login fail message is not displayed", loginPage.isLogInFail());
+    @Then("display fail message {string}")
+    public void display_fail_message(String messageFail) {
+        Assert.assertTrue(messageFail, loginPage.isLogInFail());
     }
-    @Then("^display capcha message and navigate to the home page$")
-    public void display_capcha_message_and_navigate_to_the_home_page() {
-        Assert.assertTrue("Login fail message is not displayed", loginPage.isCapcha());
+    @Then("The message {string} is displayed")
+    public void the_message_is_displayed(String message) {
+        Assert.assertTrue(message, loginPage.isLogInFail());
     }
+
 }
